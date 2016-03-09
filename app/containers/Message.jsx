@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames/bind';
-import styles from 'scss/components/message';
+import styles from 'css/components/message';
 
 const cx = classNames.bind(styles);
 

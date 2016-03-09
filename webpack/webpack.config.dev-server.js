@@ -27,6 +27,27 @@ var commonLoaders = [
   { test: /\.html$/, loader: 'html-loader' }
 ];
 
+var postCSSConfig = function() {
+  return [
+    require('postcss-import')({
+      path: path.join(__dirname, '..', 'app', 'css')
+    }),
+    // Note: you must set postcss-mixins before simple-vars and nested
+    require('postcss-mixins')(),
+    require('postcss-simple-vars')(),
+    // Unwrap nested rules like how Sass does it
+    require('postcss-nested')(),
+    //  parse CSS and add vendor prefixes to CSS rules
+    require('autoprefixer')({
+      browsers: ['last 2 versions', 'IE > 8']
+    }),
+    // A PostCSS plugin to console.log() the messages registered by other
+    // PostCSS plugins
+    require('postcss-reporter')({
+      clearMessages: true
+    })
+  ];
+};
 module.exports = {
     // The configuration for the server-side rendering
     name: "server-side rendering",
@@ -46,14 +67,13 @@ module.exports = {
     },
     module: {
       loaders: commonLoaders.concat([
-           { test: /\.scss$/,
-             loader: ExtractTextPlugin.extract('style-loader', 'css-loader?module&localIdentName=[local]__[hash:base64:5]!postcss-loader!sass?includePaths[]='
-                                               + encodeURIComponent(path.resolve(__dirname, '..', 'app', 'scss')))
+           { test: /\.css$/,
+             loader: ExtractTextPlugin.extract('style-loader', 'css-loader?module!postcss-loader')
            }
       ])
     },
     resolve: {
-      extensions: ['', '.js', '.jsx', '.scss'],
+      extensions: ['', '.js', '.jsx', '.css'],
       modulesDirectories: [
         "app", "node_modules"
       ]
@@ -62,7 +82,8 @@ module.exports = {
         // extract inline css from modules into separate files
         new ExtractTextPlugin("styles/main.css"),
         new webpack.DefinePlugin({
-          __DEV__: true
+          __DEVCLIENT__: false
         })
-    ]
+    ],
+    postcss: postCSSConfig
 };

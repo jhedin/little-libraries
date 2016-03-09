@@ -1,10 +1,10 @@
-@import 'settings.scss';
+@import 'settings.css';
 
-@mixin simpleBoxShadow() {
+@define-mixin simpleBoxShadow {
   box-shadow: 0 1px 2px $color-black;
 }
 
-@mixin input() {
+@define-mixin input {
   padding: 0.75rem 1rem;
   border: 2px solid $color-loblolly;
   border-radius: $global-radius;
@@ -18,7 +18,7 @@
   margin-bottom: 0.75rem;
 }
 
-@mixin button($background: $color-salem, $width: 100%) {
+@define-mixin button $background: $color-salem, $width: 100% {
   display: block;
   padding: 0.75rem 1.25rem;
   width: $width;

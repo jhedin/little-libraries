@@ -1,8 +1,8 @@
-@import 'mixins.scss';
-@import 'settings.scss';
+@import 'mixins.css';
+@import 'settings.css';
 
 .scoreboard {
-  @include simpleBoxShadow;
+  @mixin simpleBoxShadow;
   width: 40%;
   margin: 16px;
   border-radius: $global-radius;

@@ -1,5 +1,5 @@
-@import 'settings.scss';
-@import 'mixins.scss';
+@import 'settings.css';
+@import 'mixins.css';
 
 .login {
   width: 420px;
@@ -58,7 +58,7 @@
   }
 
   .login__input {
-    @include input;
+    @mixin input;
   }
 
   .login__message {
@@ -67,7 +67,7 @@
   }
 
   .login__button {
-    @include button;
+    @mixin button;
   }
 
   .login__hint {

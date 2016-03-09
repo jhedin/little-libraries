@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import TopicTextInput from 'components/TopicTextInput';
 import classNames from 'classnames/bind';
-import styles from 'scss/components/entrybox';
+import styles from 'css/components/entrybox';
 
 const cx = classNames.bind(styles);
 
