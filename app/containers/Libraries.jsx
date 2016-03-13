@@ -35,7 +35,7 @@ class Libraries extends Component {
     const {libraries, leaflet} = this.props;
     let L = window.L;
 
-    let map = L.map("map").setView([51.0401904, -114.087756], 13);
+    let map = L.map("map").setView([48.4284425, -123.3488279], 13);
 
     L.tileLayer( 'http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
