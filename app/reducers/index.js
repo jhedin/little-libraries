@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import user from 'reducers/user';
 import topic from 'reducers/topic';
+import geo from 'reducers/geo';
 import message from 'reducers/message';
 import library from 'reducers/library';
 import book from 'reducers/book';
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   message,
   library,
   book,
+  geo,
   routing
 });
   

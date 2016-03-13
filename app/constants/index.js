@@ -48,6 +48,9 @@ export const GET_LIBRARIES_SUCCESS = 'GET_LIBRARIES_SUCCESS';
 export const GET_LIBRARIES_FAILURE = 'GET_LIBRARIES_FAILURE';
 export const LIBRARY_TYPING = 'LIBRARY_TYPING';
 
+// geo
+
+export const GET_GEO = 'GET_GEO';
 
 
 

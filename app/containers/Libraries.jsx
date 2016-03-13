@@ -5,14 +5,19 @@ import classNames from 'classnames/bind';
 import { push } from 'react-router-redux';
 import LibraryItem from 'components/LibraryItem';
 
+import styles from 'scss/components/libraries';
+
 import {
   fetchLibraries
    } from 'actions/libraries';
-import styles from 'scss/components/libraries';
 
 import {
   fetchBooks
   } from 'actions/books';
+
+import {
+  getGeo
+  } from 'actions/geo';
  
 const cx = classNames.bind(styles);
 
@@ -23,6 +28,27 @@ class Libraries extends Component {
   static need = [
     fetchLibraries
   ]
+
+  // enable leaflet
+  componentDidMount () {
+
+    const {libraries, leaflet} = this.props;
+    let L = window.L;
+
+    let map = L.map("map").setView([51.0401904, -114.087756], 13);
+
+    L.tileLayer( 'http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    for(let library of libraries) {
+
+      L.marker([library.lat, library.lon])
+      .on('click', this.onSelectLibrary.bind(this, library.id))
+      .addTo(map);
+    }
+
+  }
 
   constructor(props) {
     super(props);
@@ -42,9 +68,8 @@ class Libraries extends Component {
     dispatch(push('/newLibrary'));
   }
 
-
   render() {
-    const {libraries} = this.props;
+    const {libraries, leaflet} = this.props;
 
     const libraryItems = libraries.map((library, key) => {
       return (
@@ -57,7 +82,7 @@ class Libraries extends Component {
 
     return (
       <div className={cx('libraries')}>
-        <ul>{libraryItems}</ul>
+        {leaflet ? <div id="map" className={cx('map')}></div> : <ul>{libraryItems}</ul>}    
         <button onClick={this.onNewLibrary}>New Library</button>
       </div>
     );
@@ -67,12 +92,14 @@ class Libraries extends Component {
 
 Libraries.propTypes = {
   libraries: PropTypes.array.isRequired,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
+  leafet: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    libraries: state.library.libraries
+    libraries: state.library.libraries,
+    leaflet: state.geo.leaflet
   };
 }
 

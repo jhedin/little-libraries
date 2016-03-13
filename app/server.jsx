@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { RouterContext, match, createMemoryHistory } from 'react-router'
+import { RouterContext, match, createMemoryHistory } from 'react-router';
 import axios from 'axios';
 import { Provider } from 'react-redux';
 import createRoutes from 'routes.jsx';
@@ -23,7 +24,7 @@ axios.defaults.baseURL = `http://${clientConfig.host}:${clientConfig.port}`;
  * @param head - optional arguments to be placed into the head
  */
 function renderFullPage(renderedContent, initialState, head={
-  title: 'React Webpack Node',
+  title: 'Little Libraries',
   meta: '<meta name="viewport" content="width=device-width, initial-scale=1" />',
   link: '<link rel="stylesheet" href="/assets/styles/main.css"/>'
 }) {
@@ -37,6 +38,7 @@ function renderFullPage(renderedContent, initialState, head={
         ${head.meta}
 
         ${head.link}
+        <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
     </head>
     <body>
     <div id="app">${renderedContent}</div>
@@ -111,7 +113,7 @@ export default function render(req, res) {
         res.status(200).end(renderFullPage(componentHTML, initialState, {
           title: headconfig.title,
           meta: headconfig.meta,
-          link: headconfig.link
+          link: headconfig.link,
         }));
       })
       .catch(err => {
