@@ -1,10 +1,17 @@
 /**
  * Routes for express app
  */
+var mongoose = require('mongoose');
+ 
+var Book = mongoose.model('Book');
+var books = require('../controllers/books');
+var Library = mongoose.model('Library');
+var libraries = require('../controllers/libraries');
+
 var topics = require('../controllers/topics');
 var express = require('express');
 var users = require('../controllers/users');
-var mongoose = require('mongoose');
+
 var _ = require('lodash');
 var Topic = mongoose.model('Topic');
 var path = require('path');
@@ -51,6 +58,34 @@ module.exports = function(app, passport) {
   app.delete('/topic/:id', function(req, res) {
     topics.remove(req, res);
   });
+
+    // topic routes
+  app.get('/books', books.all);
+  app.get('/books/library', books.library);
+
+  app.post('/books/:id', function(req, res) {
+    books.add(req, res);
+  });
+
+  app.delete('/books/:id', function(req, res) {
+    books.remove(req, res);
+  });
+
+  app.get('/lib/', libraries.all);
+
+  app.post('/lib/:id', function(req, res) {
+    libraries.add(req, res);
+  });
+
+  app.put('/lib/:id', function(req, res) {
+    libraries.update(req, res);
+  });
+
+  app.delete('/lib/:id', function(req, res) {
+    libraries.remove(req, res);
+  });
+
+
 
   // This is where the magic happens. We take the locals data we have already
   // fetched and seed our stores with data.

@@ -1,16 +1,16 @@
 import {
-  TYPING,
   CREATE_TOPIC_REQUEST,
   CREATE_TOPIC_FAILURE,
   DESTROY_TOPIC,
-  INCREMENT_COUNT,
-  DECREMENT_COUNT,
   GET_TOPICS_REQUEST,
   GET_TOPICS_SUCCESS,
-  GET_TOPICS_FAILURE } from 'constants/index';
+  GET_TOPICS_FAILURE,
+  INCREMENT_COUNT,
+  DECREMENT_COUNT,
+  TYPING } from 'constants/index';
 
 
-export default function topic(state = {
+export default function library(state = {
   topics: [],
   newTopic: ''
 }, action) {
