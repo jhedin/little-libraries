@@ -39,7 +39,7 @@ export default (store) => {
   };
   return (
     <Route path="/" component={App}>
-      <IndexRoute component={Vote} />
+      <IndexRoute component={Libraries} />
       <Route path="library/:id" component={Library} />
       <Route path="newBook/:id" component={NewBook} />
       <Route path="libraries" component={Libraries} />
