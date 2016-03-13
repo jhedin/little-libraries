@@ -17,11 +17,39 @@ const cx = classNames.bind(styles);
 
 class NewLibrary extends Component {
 
+  // enable leaflet
+  componentDidMount () {
+
+    const {libraries, leaflet} = this.props;
+    let L = window.L;
+
+    let map = L.map("map").setView([48.4284425, -123.3488279], 13);
+
+    L.tileLayer( 'http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    let mark = L.marker([48.4284425, -123.3488279])
+      .on('move', e => this.onMarkerMove(mark.getLatLng().lat,mark.getLatLng().lng))
+      .addTo(map);
+
+    map.on('click', e => { mark.setLatLng(e.latlng)});
+
+
+  }
+
   constructor(props) {
     super(props);
     // event handlers for libraryItems components
     this.onlibraryTyping = this.onlibraryTyping.bind(this);
     this.onEntrySave = this.onEntrySave.bind(this);
+    this.onMarkerMove = this.onMarkerMove.bind(this);
+  }
+
+  onMarkerMove(lat,lng) {
+    const { dispatch } = this.props;
+    let form = {lat:lat, lon:lng};
+    dispatch(libraryTyping(form));
   }
 
   onlibraryTyping(typ, val) {
@@ -42,44 +70,38 @@ class NewLibrary extends Component {
 
     return (
       <div className={cx('new-library')}>   
-        <TextInput placeholder="library's name (make one up!)"
-          className="library-name" 
-          maxlength="100"
-          type="text"
-          value={newLibrary.name}
-          onEntryChange={this.onlibraryTyping.bind(this, "name")}
-          />
-        <NumberInput placeholder="lat"
-          className="lat"
-          value={newLibrary.lat}
-          onEntryChange={this.onlibraryTyping.bind(this, "lat")}
-          />
-        <NumberInput placeholder="lon"
-          className="lon"
-          value={newLibrary.lon}
-          onEntryChange={this.onlibraryTyping.bind(this, "lon")}
-          />
-        <TextInput placeholder="Description: How do you find it, who runs it and so on"
-          className="library-desc" 
-          maxlength="500"
-          type="text"
-          value={newLibrary.desc}
-          onEntryChange={this.onlibraryTyping.bind(this, "desc")}
-          />
-        <NumberInput placeholder="Book Capacity"
-          className="library-cap" 
-          value={newLibrary.capacity}
-          onEntryChange={this.onlibraryTyping.bind(this, "capacity")}
-          />
-        <TextInput placeholder="picture link"
-          className="library-pic-link" 
-          maxlength="300"
-          type="url"
-          value={newLibrary.picture}
-          onEntryChange={this.onlibraryTyping.bind(this, "picture")}
-          />
+        <div id="map" className={cx('map')}></div>
+        <ul>
+          <li>Library Name: <TextInput placeholder="(make one up!)"
+            className="library-name" 
+            maxlength="100"
+            type="text"
+            value={newLibrary.name}
+            onEntryChange={this.onlibraryTyping.bind(this, "name")}
+            /></li>
 
-        <button onClick={this.onEntrySave} >Submit</button>
+          <li>Description: <TextInput placeholder="How do you find it, who runs it and so on"
+            className="library-desc" 
+            maxlength="500"
+            type="text"
+            value={newLibrary.desc}
+            onEntryChange={this.onlibraryTyping.bind(this, "desc")}
+            /></li>
+          <li>Max Number of Books: <NumberInput placeholder="Book Capacity"
+            className="library-cap" 
+            value={newLibrary.capacity}
+            onEntryChange={this.onlibraryTyping.bind(this, "capacity")}
+            /></li>
+          <li>Link to a picture: <TextInput placeholder="picture link"
+            className="library-pic-link" 
+            maxlength="300"
+            type="url"
+            value={newLibrary.picture}
+            onEntryChange={this.onlibraryTyping.bind(this, "picture")}
+            /></li>
+          <li><button onClick={this.onEntrySave} >Submit</button></li>
+        </ul>
+
       </div>
     );
   }

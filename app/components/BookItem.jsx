@@ -25,9 +25,8 @@ export default class BookItem extends Component {
 
     return (
       <li className={cx('book-item')} key={this.props.id} onClick={this.props.selected ? this.onDeselectBook:this.onSelectBook}>
-          <p>{this.props.name}</p>
-          <p>{this.props.author}</p>
-          <p>{this.props.isbn}</p>
+          <h3>{this.props.name}</h3>
+          <p>{this.props.author},{this.props.isbn}</p>
       </li>
     );
   }

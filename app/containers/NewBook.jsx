@@ -42,29 +42,30 @@ class NewBook extends Component {
 
     return (
       <div className={cx('new-book')}>   
-        <TextInput placeholder="title"
-          className="book-name" 
-          maxlength={140}
-          type="text"
-          value={newBook.name}
-          onEntryChange={this.onBookTyping.bind(this, "name")}
-          />
-          <TextInput placeholder="author (last name)"
-          className="book-author" 
-          maxlength={100}
-          type="text"
-          value={newBook.author}
-          onEntryChange={this.onBookTyping.bind(this, "author")}
-          />
-          <TextInput placeholder="isbn"
-          className="book-isbn" 
-          maxlength={20}
-          type="text"
-          value={newBook.isbn}
-          onEntryChange={this.onBookTyping.bind(this, "isbn")}
-          />
-
-        <button onClick={this.onEntrySave} >Submit</button>
+        <ul>
+          <li>Title: <TextInput placeholder="title"
+            className="book-name" 
+            maxlength={140}
+            type="text"
+            value={newBook.name}
+            onEntryChange={this.onBookTyping.bind(this, "name")}
+          /></li>
+          <li>Author: <TextInput placeholder="(last name)"
+            className="book-author" 
+            maxlength={100}
+            type="text"
+            value={newBook.author}
+            onEntryChange={this.onBookTyping.bind(this, "author")}
+          /></li>
+          <li>ISBN: <TextInput placeholder="isbn"
+            className="book-isbn" 
+            maxlength={20}
+            type="text"
+            value={newBook.isbn}
+            onEntryChange={this.onBookTyping.bind(this, "isbn")}
+          /></li>
+          <button onClick={this.onEntrySave} >Submit</button>
+        </ul>
       </div>
     );
   }
