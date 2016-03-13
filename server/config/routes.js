@@ -60,14 +60,14 @@ module.exports = function(app, passport) {
   });
 
     // topic routes
-  app.get('/books', books.all);
-  app.get('/books/library', books.library);
+  app.get('/book', books.all);
+  app.get('/book/:id', books.library);
 
-  app.post('/books/:id', function(req, res) {
+  app.post('/book/:id', function(req, res) {
     books.add(req, res);
   });
 
-  app.delete('/books/:id', function(req, res) {
+  app.delete('/book/:id', function(req, res) {
     books.remove(req, res);
   });
 

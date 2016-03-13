@@ -31,7 +31,7 @@ export const GET_BOOKS = 'GET_BOOKS';
 export const GET_BOOKS_REQUEST = 'GET_BOOKS_REQUEST';
 export const GET_BOOKS_SUCCESS = 'GET_BOOKS_SUCCESS';
 export const GET_BOOKS_FAILURE = 'GET_BOOKS_FAILURE';
-export const DESTROY_BOOK = 'DESTROY_BOOK';
+export const REMOVE_SELECTED = 'DESTROY_BOOK';
 export const BOOK_TYPING = 'LIBRARY_TYPING';
 
 export const SELECT_BOOK = 'SELECT_BOOK';

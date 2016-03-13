@@ -3,6 +3,7 @@ import user from 'reducers/user';
 import topic from 'reducers/topic';
 import message from 'reducers/message';
 import library from 'reducers/library';
+import book from 'reducers/book';
 import { routerReducer as routing } from 'react-router-redux';
 
 // Combine reducers with routeReducer which keeps track of
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   topic,
   message,
   library,
+  book,
   routing
 });
   
