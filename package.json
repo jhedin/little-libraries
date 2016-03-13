@@ -1,5 +1,5 @@
 {
-  "name": "react-webpack-node",
+  "name": "little-libraries",
   "version": "1.4.5",
   "description": "A simple Node.js app using Express 4 with Webpack, React, alt, ImmutableJS",
   "repository": "https://github.com/choonkending/react-webpack-node",
