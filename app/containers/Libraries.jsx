@@ -35,7 +35,8 @@ class Libraries extends Component {
     const {libraries, leaflet} = this.props;
     let L = window.L;
 
-    let map = L.map("map").setView([48.4284425, -123.3488279], 13);
+    let map = L.map("map");//.setView([48.4284425, -123.3488279], 13);
+    map.locate({setView: true, maxZoom: 16});
 
     L.tileLayer( 'http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -83,7 +84,7 @@ class Libraries extends Component {
     return (
       <div className={cx('libraries')}>
         {leaflet ? <div id="map" className={cx('map')}></div> : <ul>{libraryItems}</ul>}    
-        <button onClick={this.onNewLibrary}>New Library</button>
+        <button className={cx('new')} onClick={this.onNewLibrary}>New Library</button>
       </div>
     );
   }

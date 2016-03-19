@@ -46,7 +46,12 @@ module.exports = {
     },
     module: {
       loaders: commonLoaders.concat([
-           { test: /\.scss$/,
+           { 
+            test: /\.scss$/,
+            /*loader: 'style!css?module&localIdentName=[local]__[hash:base64:5]' +
+              '&sourceMap!postcss-loader!sass?sourceMap&outputStyle=expanded' +
+              '&includePaths[]=' + encodeURIComponent(path.resolve(__dirname, '..', 'app', 'scss'))
+            */
              loader: ExtractTextPlugin.extract('style-loader', 'css-loader?module&localIdentName=[local]__[hash:base64:5]!postcss-loader!sass?includePaths[]='
                                                + encodeURIComponent(path.resolve(__dirname, '..', 'app', 'scss')))
            }

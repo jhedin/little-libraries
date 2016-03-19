@@ -1,3 +1,13 @@
 @import 'settings.scss';
 
-.map { height: 90vh; }
+.map { height: 100vh; }
+
+.new {
+	position: absolute;
+	top:0;
+	right:0;
+	margin-right: 2vw;
+	margin-top: 2vh;
+	min-width: 5vw;
+	min-height: 3vh;
+}

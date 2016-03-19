@@ -12,7 +12,6 @@ export default function geo(state = {
   lon: ""
 
 }, action) {
-  console.log(state.books);
   switch (action.type) {
     case GET_GEO:
       return Object.assign({}, state, {

@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 import _ from 'lodash';
 
 import { push } from 'react-router-redux';
-
+ 
 import {
   fetchLibraries
    } from 'actions/libraries';
@@ -18,6 +18,7 @@ import {
   } from 'actions/books';
   
 import styles from 'scss/components/library';
+console.dir(styles);
 
 const cx = classNames.bind(styles);
 
@@ -63,20 +64,23 @@ class Library extends Component {
 
     const library = _.find(libraries, {id:this.props.params.id});
 
+
     return (
       <div className={cx('library')}>
-        <img src={library.picture} />
-      	<h1>{library.name}</h1>
-      	<p>{library.desc}</p>
+        <div className={cx('center')}>
+          <h1>{library.name}</h1>
+          <img className={cx('library-img')} src={library.picture} />
+          <p>{library.desc}</p>
 
-        <BooksMain
-          books={this.props.books}
-          selected={this.props.selected}
-          onSelectBook={this.onSelectBook}
-          onDeselectBook={this.onDeselectBook}
-          onNewBook={this.onNewBook}
-          onRemoveSelected={this.onRemoveSelected}
-        />
+          <BooksMain
+            books={this.props.books}
+            selected={this.props.selected}
+            onSelectBook={this.onSelectBook}
+            onDeselectBook={this.onDeselectBook}
+            onNewBook={this.onNewBook}
+            onRemoveSelected={this.onRemoveSelected}
+          />
+      	</div>
         
 
       </div>

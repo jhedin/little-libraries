@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 import classNames from 'classnames/bind';
 import styles from 'scss/components/books-main';
-
+ 
 const cx = classNames.bind(styles);
 
 const BooksMain = ({onSelectBook, onDeselectBook, books, selected, onNewBook, onRemoveSelected}) => {
@@ -26,7 +26,7 @@ const BooksMain = ({onSelectBook, onDeselectBook, books, selected, onNewBook, on
   return (
     <div className={cx('main-section')}>
       <ul className={cx('book-list')}>{bookItems}</ul>
-      <div>
+      <div className={cx('buttons')}>
         <button onClick={onNewBook} >Add Book</button>
         <button onClick={onRemoveSelected.bind(null, selected)} >Take Selected</button>
       </div>

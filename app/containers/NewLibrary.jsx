@@ -23,7 +23,8 @@ class NewLibrary extends Component {
     const {libraries, leaflet} = this.props;
     let L = window.L;
 
-    let map = L.map("map").setView([48.4284425, -123.3488279], 13);
+    let map = L.map("map");//.setView([48.4284425, -123.3488279], 13);
+    map.locate({setView: true, maxZoom: 16});
 
     L.tileLayer( 'http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -72,6 +73,8 @@ class NewLibrary extends Component {
       <div className={cx('new-library')}>   
         <div id="map" className={cx('map')}></div>
         <ul>
+          <li><h3>Add a New Library</h3></li>
+          <li>Click on the Map to Set the Location</li>
           <li>Library Name: <TextInput placeholder="(make one up!)"
             className="library-name" 
             maxlength="100"

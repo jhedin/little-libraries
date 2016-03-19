@@ -38,7 +38,6 @@ class NewBook extends Component {
 
   render() {
     const {newBook} = this.props;
-    console.log(newBook)
 
     return (
       <div className={cx('new-book')}>   

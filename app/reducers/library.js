@@ -20,7 +20,7 @@ export default function library(state = {
   },
 
 }, action) {
-  console.log(state.libraries);
+
   switch (action.type) {
     case GET_LIBRARIES_REQUEST:
       return Object.assign({}, state, {

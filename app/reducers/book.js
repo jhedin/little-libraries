@@ -23,7 +23,6 @@ export default function book(state = {
   selected: [],
 
 }, action) {
-  console.log(state.books);
   switch (action.type) {
     case GET_BOOKS_REQUEST:
       return Object.assign({}, state, {
